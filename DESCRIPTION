@@ -1,11 +1,20 @@
 Package: USCensus2020
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Provides access to the 2020 census data in R
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: shreshtha modi <modishreshtha48@gmail.com>
+Maintainer: shreshtha modi <modishreshtha48@gmail.com>
+Description: This packages provides the access to the 2020 redistricting data and the helper functions which are used to better access and format the data
+URL: https://github.com/shreshtha48/USCensus2020
+License: GPL (>= 3)
 Encoding: UTF-8
+Depends: R (>= 2.10)
 LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown,
+VignetteBuilder: knitr
+RoxygenNote: 7.2.1
+Imports: 
+    geohash,
+    sf

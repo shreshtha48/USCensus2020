@@ -1,5 +1,4 @@
-load_data=function (url,shapefile=NULL,state,level=c("County", "County Subdivision","Consolidated City","Place","Census Tract","Block Group ","Block")){
-require(dplyr)
+load_data=function (url,shapefile=NULL,state,level=c("County", "County Subdivision","City","Tract","Block Group ","Block")){
 temp <- tempfile()
 download.file(url, temp)
 unzip(temp)
@@ -52,20 +51,19 @@ rownames(combine) <- 1:nrow(combine)
   if(!missing(level) & length(level)>1) stop("Only one level is allowed.")
   level <- match.arg(level)
  }  if (level == "County") {
-    combine=dplyr::filter(SUMLEV == '050')
+    combine[SUMLEV == '050',]
   } else if (level == "County Subdivision") {
-    combine=dplyr::filter(SUMLEV == '060')
-  } else if (level == "Consolidated City") {
-    combine =dplyr::filter(SUMLEV == '170')
+    combine[SUMLEV == '060',]
+  } else if (level == "City") {
+   combine[SUMLEV == '170',]
   }else if (level == "Tract") {
-    combine=dplyr::filter(SUMLEV == '140')
-  }else if (level == "Place") {
-    combine=dplyr::filter(SUMLEV == '160')
+    combine[SUMLEV == '140',]
   }else if (level == "Block") {
-    combine= dplyr::filter(SUMLEV == '750')
+   combine[SUMLEV == '750',]
   }else if (level == "Block Group") {
-    combine=dplyr::filter(SUMLEV == '150')
+   combine[SUMLEV == '150',]
   }
+unlink(temp)
 state=paste(state,level,"20")
 state=(gsub(" ","",state))
 assign(state,value=combine)
@@ -75,7 +73,6 @@ keeps <- c("GEOID20", "MTFCC20","geometry")
 sf_county=sf_county[keeps]
 xyz<-merge(x=sf_county,y=xyz,by.x="GEOID20" , by.y="GEOCODE")
 assign(state,value=xyz,envir = .GlobalEnv)}
-unlink(temp)
 }
 
 

@@ -7,14 +7,13 @@ demographics<- function(dem = "P0010001", state, statefips = FALSE, level = c("t
   level=match.arg(level)
   require(paste("UScensus",level,"20",sep=""), character.only = TRUE)
    state <- check.state(state)
-   state2 <- state
   if (is.null(state)) {
     stop("Please Enter a state") }
   if(statefips=TRUE){
-    data("statefips20.rda",package="UScensus2020")
+    data("statefips20.rda",package="UScensus2020",envir=.GlobalEnv)
     statename=subset.data.frame(statefips,FIPS=statefips,select="State")
     statename
-    a=c(paste(state,level,"20",sep=""))
+    a=c(paste(statename,level,"20",sep=""))
     data(list=a,package=paste("UScensus",level,"20",sep=""))
     temp <- get(a)
     b=temp[, c("BASENAME",dem)]
@@ -22,10 +21,10 @@ demographics<- function(dem = "P0010001", state, statefips = FALSE, level = c("t
   }
   else{
     a=c(paste(state,level,"20",sep=""))
-  data(list=a,package=paste("UScensus",level,"20",sep=""))
-  temp <- get(a)
-  b=temp[, c("BASENAME",dem)]
-  return(b)
+    data(list=a,package=paste("UScensus",level,"20",sep=""),envir=.GlobalEnv)
+    temp <- get(a)
+    b=temp[, c("BASENAME",dem)]
+    return(b)
     }
 }
 

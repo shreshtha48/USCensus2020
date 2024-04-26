@@ -2,6 +2,8 @@
 
 US Census 2020 is an R package that helps you access [US Census](https://data.census.gov/) data in R in the form of data packages. Census is the survey of population that happens once every decade and the last census for US was in 2020. Census data can tell a lot about patterns and help uncover valuable insights. The aim of the package is to provide researchers with a ready to use data kit for their analysis so that they can focus on things that are of greater importance
 
+Documentation : [How to access census data in R] (https://shreshtha.hashnode.dev/how-to-access-census-data-in-r)
+
 ## The following package contains:
 * Census Data (Currently only redistricting files are available. Soon, the entire census data will be available!)
 * Shapefiles
